@@ -408,10 +408,14 @@ export default class Display {
             });
         } else {
             // NB(directxman12): arr must be an Type Array view
-            let data = new Uint8ClampedArray(arr.buffer,
-                                             arr.byteOffset + offset,
-                                             width * height * 4);
-            let img = new ImageData(data, width, height);
+            let img = this._drawCtx.createImageData(width, height);
+            let data = img.data;
+            for (let i = 0, j = offset; i < width * height * 4; i += 4, j += 4) {
+                data[i]     = arr[j];
+                data[i + 1] = arr[j + 1];
+                data[i + 2] = arr[j + 2];
+                data[i + 3] = 255;  // Alpha
+            }
             this._drawCtx.putImageData(img, x, y);
             this._damage(x, y, width, height);
         }

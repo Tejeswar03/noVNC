@@ -178,7 +178,8 @@ const UI = {
         UI.initSetting('password');
         UI.initSetting('autoconnect', false);
         UI.initSetting('view_clip', false);
-        UI.initSetting('resize', 'off');
+        
+        UI.initSetting('resize', 'scale');
         UI.initSetting('quality', 6);
         UI.initSetting('compression', 2);
         UI.initSetting('shared', true);
@@ -1347,7 +1348,7 @@ const UI = {
 
     // Apply remote resizing or local scaling
     applyResizeMode() {
-        if (!UI.rfb) return;
+        // if (!UI.rfb) return;
 
         UI.rfb.scaleViewport = UI.getSetting('resize') === 'scale';
         UI.rfb.resizeSession = UI.getSetting('resize') === 'remote';
