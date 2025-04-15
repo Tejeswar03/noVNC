@@ -147,7 +147,7 @@ const UI = {
     initFullscreen() {
         // Only show the button if fullscreen is properly supported
         // * Safari doesn't support alphanumerical input while in fullscreen
-        if (!isSafari() &&
+        if (
             (document.documentElement.requestFullscreen ||
              document.documentElement.mozRequestFullScreen ||
              document.documentElement.webkitRequestFullscreen ||
@@ -383,7 +383,8 @@ const UI = {
     },
 
     addFullscreenHandlers() {
-        document.getElementById("noVNC_fullscreen_button")
+        console.log("hello");
+        document.getElementById("noVNC_connect_button")
             .addEventListener('click', UI.toggleFullscreen);
 
         window.addEventListener('fullscreenchange', UI.updateFullscreenButton);
